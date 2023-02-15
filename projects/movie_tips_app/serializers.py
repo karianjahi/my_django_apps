@@ -6,13 +6,20 @@ from django.contrib.auth.models import User
 class MovieRecommenderSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieRecommender
-        fields = ["owner", "name", "created_on", "description"]
+        fields = [
+            "id",
+            "owner",
+            "description",
+            "name",
+            "created_on",
+        ]
 
 
 class MovieRatingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieRatings
         fields = [
+            "id",
             "movie_recommender_id",
             "movie_title_1",
             "rating_1",
@@ -27,6 +34,7 @@ class RecommendationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recommendations
         fields = [
+            "id",
             "movie_1",
             "movie_2",
             "movie_3",

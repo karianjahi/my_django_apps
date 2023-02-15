@@ -4,8 +4,8 @@ from movie_recommender_app.choices import MOVIE_TUPLES, RATING_TUPLES
 
 # Create your models here.
 class MovieRecommender(models.Model):
-    owner = models.ForeignKey('auth.User', related_name='owner', on_delete=models.CASCADE())
-    name = models.CharField(blank=True)
+    owner = models.ForeignKey('auth.User', related_name='owner', on_delete=models.CASCADE)
+    name = models.CharField(blank=True, max_length=200)
     created_on = models.DateTimeField(auto_now_add=True)
     description = models.TextField(default='No description provided')
 
@@ -13,8 +13,8 @@ class MovieRecommender(models.Model):
     def get_by_pk(pk):
         return MovieRecommender.objects.get(id=pk)
 
-    def save(self):
-        self.save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
 
 class MovieRatings(models.Model):
@@ -22,16 +22,16 @@ class MovieRatings(models.Model):
     movie_title_1 = models.CharField(choices=MOVIE_TUPLES, max_length=200)
     rating_1 = models.IntegerField(choices=RATING_TUPLES)
     movie_title_2 = models.CharField(choices=MOVIE_TUPLES, max_length=200)
-    rating_2 = models.IntegerField(max_length=200)
+    rating_2 = models.IntegerField(choices=RATING_TUPLES)
     movie_title_3 = models.CharField(choices=MOVIE_TUPLES, max_length=200)
-    rating_3 = models.IntegerField(max_length=200)
+    rating_3 = models.IntegerField(choices=RATING_TUPLES)
 
     @staticmethod
     def get_by_pk(pk):
         return MovieRatings.objects.get(id=pk)
 
-    def save(self):
-        self.save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
 
 class Recommendations(models.Model):
@@ -46,5 +46,5 @@ class Recommendations(models.Model):
     def get_by_pk(pk):
         return Recommendations.objects.get(id=pk)
 
-    def save(self):
-        self.save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
