@@ -1,4 +1,4 @@
-from .models import MovieRecommender, MovieRatings, Recommendations
+from .models import MovieRecommender, MovieRatings
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -30,16 +30,16 @@ class MovieRatingsSerializer(serializers.ModelSerializer):
         ]
 
 
-class RecommendationsSerializer(serializers.ModelSerializer):
+class MovieRatingsDeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Recommendations
+        model = MovieRatings
         fields = [
             "id",
-            "movie_1",
-            "movie_2",
-            "movie_3",
-            "movie_4",
-            "movie_5",
+            "recommended_movie_1",
+            "recommended_movie_2",
+            "recommended_movie_3",
+            "recommended_movie_4",
+            "recommended_movie_5",
         ]
 
 

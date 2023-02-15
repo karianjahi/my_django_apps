@@ -25,26 +25,15 @@ class MovieRatings(models.Model):
     rating_2 = models.IntegerField(choices=RATING_TUPLES)
     movie_title_3 = models.CharField(choices=MOVIE_TUPLES, max_length=200)
     rating_3 = models.IntegerField(choices=RATING_TUPLES)
+    recommended_movie_1 = models.CharField(max_length=200, default="")
+    recommended_movie_2 = models.CharField(max_length=200, default="")
+    recommended_movie_3 = models.CharField(max_length=200, default="")
+    recommended_movie_4 = models.CharField(max_length=200, default="")
+    recommended_movie_5 = models.CharField(max_length=200, default="")
 
     @staticmethod
     def get_by_pk(pk):
         return MovieRatings.objects.get(id=pk)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-
-class Recommendations(models.Model):
-    movie_ratings_id = models.ForeignKey(MovieRatings, on_delete=models.CASCADE)
-    movie_1 = models.CharField(max_length=200)
-    movie_2 = models.CharField(max_length=200)
-    movie_3 = models.CharField(max_length=200)
-    movie_4 = models.CharField(max_length=200)
-    movie_5 = models.CharField(max_length=200)
-
-    @staticmethod
-    def get_by_pk(pk):
-        return Recommendations.objects.get(id=pk)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
