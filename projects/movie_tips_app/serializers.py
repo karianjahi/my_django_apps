@@ -9,8 +9,8 @@ class MovieRecommenderSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "owner",
-            "description",
             "name",
+            "description",
             "created_on",
         ]
 
@@ -27,6 +27,11 @@ class MovieRatingsSerializer(serializers.ModelSerializer):
             "rating_2",
             "movie_title_3",
             "rating_3",
+            "recommended_movie_1",
+            "recommended_movie_2",
+            "recommended_movie_3",
+            "recommended_movie_4",
+            "recommended_movie_5",
         ]
 
 

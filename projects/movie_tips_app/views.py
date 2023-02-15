@@ -64,11 +64,11 @@ class MovieRatingsDetail(generics.RetrieveUpdateDestroyAPIView):
         # implement machine learning here
         movies = recommend_movies(data, n=5)
 
-        data["movie_1"] = movies[0]
-        data["movie_2"] = movies[1]
-        data["movie_3"] = movies[2]
-        data["movie_4"] = movies[3]
-        data["movie_5"] = movies[4]
+        data["recommended_movie_1"] = movies[0]
+        data["recommended_movie_2"] = movies[1]
+        data["recommended_movie_3"] = movies[2]
+        data["recommended_movie_4"] = movies[3]
+        data["recommended_movie_5"] = movies[4]
         serializer = MovieRatingsDeSerializer(movie_obj, data=data)
         if serializer.is_valid():
             serializer.save()
