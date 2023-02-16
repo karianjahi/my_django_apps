@@ -9,6 +9,9 @@ class MovieRecommender(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     description = models.TextField(default='No description provided')
 
+    def __str__(self):
+        return f'id = {self.id}'
+
     @staticmethod
     def get_by_pk(pk):
         return MovieRecommender.objects.get(id=pk)

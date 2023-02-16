@@ -2,7 +2,8 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from .models import MovieRecommender, MovieRatings
-from .serializers import MovieRecommenderSerializer, MovieRatingsSerializer, UserSerializer, MovieRatingsDeSerializer
+from .serializers import MovieRecommenderSerializer, MovieRatingsSerializer, UserSerializer, MovieRatingsDeSerializer, \
+    MovieRatingsDetailSerializer, MovieRatingsDeleteSerializer
 from movie_recommender_app.permissions import IsOwnerOrReadOnly
 from movie_recommender_app.movie_recommender import recommend_movies
 
@@ -50,19 +51,20 @@ class MovieRatingsList(generics.ListCreateAPIView):
 
 class MovieRatingsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = MovieRatings.objects.all()
-    serializer_class = MovieRatingsSerializer
+    serializer_class = MovieRatingsDetailSerializer
 
     def get(self, request, pk, *args, **kwargs):
         movies_obj = MovieRatings.objects.get(pk=pk)
-        serialized_data = MovieRatingsSerializer(movies_obj).data
+        serialized_data = MovieRatingsDetailSerializer(movies_obj).data
         return Response(serialized_data)
 
     def put(self, request, pk, *args, **kwargs):
         movie_obj = MovieRatings.objects.get(pk=pk)
         data = request.data
-
+        print(data)
         # implement machine learning here
         movies = recommend_movies(data, n=5)
+        # End of machine learning implementation
 
         data["recommended_movie_1"] = movies[0]
         data["recommended_movie_2"] = movies[1]
@@ -75,3 +77,8 @@ class MovieRatingsDetail(generics.RetrieveUpdateDestroyAPIView):
             serialized_data = serializer.data
             return Response(serialized_data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MovieRatingsDelete(generics.DestroyAPIView):
+    queryset = MovieRatings.objects.all()
+    serializer_class = MovieRatingsDeleteSerializer

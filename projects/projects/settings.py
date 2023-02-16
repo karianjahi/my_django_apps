@@ -83,12 +83,23 @@ WSGI_APPLICATION = 'projects.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'movie_recommendations_db',
+#         'USER': 'mseiya',
+#         'PASSWORD': '**;::Delta7',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'movie_recommendations_db',
-        'USER': 'mseiya',
-        'PASSWORD': '**;::Delta7',
+        'NAME': 'ichungwadb',
+        'USER': 'ichungwa',
+        'PASSWORD': 'taliSman',
         'HOST': 'localhost',
         'PORT': '',
     }
