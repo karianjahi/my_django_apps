@@ -10,7 +10,7 @@ class MovieRecommender(models.Model):
     description = models.TextField(default='No description provided')
 
     def __str__(self):
-        return f'id = {self.id}'
+        return f'movie recommender id: {self.id} '
 
     @staticmethod
     def get_by_pk(pk):

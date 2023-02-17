@@ -83,23 +83,12 @@ WSGI_APPLICATION = 'projects.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'movie_recommendations_db',
-#         'USER': 'mseiya',
-#         'PASSWORD': '**;::Delta7',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ichungwadb',
-        'USER': 'ichungwa',
-        'PASSWORD': 'taliSman',
+        'NAME': 'spiced_ds_day_db',
+        'USER': 'mseiya',
+        'PASSWORD': 'SpiCedDsDay',
         'HOST': 'localhost',
         'PORT': '',
     }
